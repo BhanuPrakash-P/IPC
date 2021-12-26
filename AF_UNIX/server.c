@@ -1,3 +1,17 @@
+/**
+ * @file server.c
+ * @author Bhanu Prakash
+ * @brief UNIX Socket implementtation for server process
+ *          Server process will wait for client connections.
+ *          Receives and adds the data from client, until 0 is sent by client.
+ *          send the result(sum of all the data items received) to client.
+ * @version 0.1
+ * @date 2021-12-26
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>

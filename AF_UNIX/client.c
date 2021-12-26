@@ -1,3 +1,17 @@
+/**
+ * @file client.c
+ * @author Bhanu Prakash
+ * @brief UNIX Socket implementtation for client process
+ *          Establish connection with the server.
+ *          Read the data(integer) and send it to server.
+ *          Send 0 to server to indicate end of data items.
+ *          Get the result from server and display it.
+ * @version 0.1
+ * @date 2021-12-26
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
