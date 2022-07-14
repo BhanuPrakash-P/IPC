@@ -13,6 +13,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <signal.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/un.h>
@@ -24,14 +25,43 @@
 #define SOCKET_NAME "/tmp/tstSock"
 #define MAX_BUFSIZE 128
 
+/*client's rounting table*/
+list_t* routing_table;
+int data_socket;
+int close_connection = 1;
+
+void signal_handler(int signal_num)
+{
+    if(signal_num == SIGINT)
+    {
+        //clear all routing entries
+        deinit_ll(routing_table);
+
+        if(write(data_socket, &close_connection, sizeof(int)) == -1)
+        {
+            perror("close_connection-write");
+            exit(EXIT_FAILURE);
+        }
+        close(data_socket);
+        exit(EXIT_SUCCESS);
+    }
+    else if(signal_num == SIGUSR1)
+    {
+        deinit_ll(routing_table);
+        routing_table = init_ll();
+        printf("Routing Tables flushed!!!\n");
+    }
+
+}
+
 int main()
 {
-    int data_socket;
     struct sockaddr addr;
     int buffer[MAX_BUFSIZE];
     //sync_msg_t* sync_msg;
-
-    list_t* routing_table = init_ll();
+    
+    int pid = getpid();
+    routing_table = init_ll();
 
     //prepare params for connect call
     addr.sa_family = AF_UNIX;
@@ -49,10 +79,23 @@ int main()
         perror("connect");
         exit(EXIT_FAILURE);
     }
+
+    //Register for signals SIGINT, SIGUSR1
+    signal(SIGINT, signal_handler);
+    signal(SIGUSR1, signal_handler);
+
     while(1)
     {
         sync_msg_t* sync_msg = (sync_msg_t *)malloc(sizeof(sync_msg_t));
         printf("Client is waiting for data!!!\n");
+
+        //send pid to Server
+        if(write(data_socket, &pid, sizeof(pid)) == -1)
+        {
+            perror("wirte-pid");
+            exit(EXIT_FAILURE);
+        }
+
         if(read(data_socket, sync_msg, sizeof(sync_msg_t)) == -1)
         {
             perror("read");

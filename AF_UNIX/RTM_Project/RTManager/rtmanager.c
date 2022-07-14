@@ -9,6 +9,7 @@
  * 
  */
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 #include "rtmanager.h"
@@ -44,11 +45,16 @@ void update_routing_entry(node_t* routing_node, char* gateway, char* oif)
 
 void display_routing_table(list_t* routing_table)
 {
-    printf("\n***********Rounting Table*************\n");
-    printf("destination\tMask\tGateway\t\toif\t\n");
     node_t* node = routing_table->head;
+    int print = 1;
     while(node != NULL)
     {
+        if(print)
+        {
+            printf("\n***********Rounting Table*************\n");
+            printf("destination\tMask\tGateway\t\toif\t\n");
+            print = 0;
+        }
         RTEntry_t routing_entry = *((RTEntry_t *)node->data);
         printf("%s | %d\t | %s | %s\n", routing_entry.destination,routing_entry.mask, routing_entry.gway_ip, routing_entry.oif);
         node = node->next;
