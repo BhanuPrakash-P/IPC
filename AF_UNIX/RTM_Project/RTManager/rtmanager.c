@@ -13,7 +13,7 @@
 #include <string.h>
 
 #include "rtmanager.h"
-#include "../LL/ll.h"
+#include "ll.h"
 
 node_t* find_routing_entry(list_t* routing_table, char* destination, int mask)
 {

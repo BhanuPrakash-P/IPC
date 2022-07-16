@@ -1,0 +1,1 @@
+add_library(rtmanager SHARED rtmanager.c)

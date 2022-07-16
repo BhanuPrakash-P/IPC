@@ -14,8 +14,6 @@
 #include <stddef.h>
 
 #include "syncmsg.h"
-#include "../LL/ll.h"
-#include "../RTManager/rtmanager.h"
 
 void process_sync_message(list_t* routing_table, sync_msg_t* sync_msg)
 {

@@ -18,9 +18,9 @@
 #include <sys/types.h>
 #include <sys/un.h>
 
-#include "LL/ll.h"
-#include "RTManager/rtmanager.h"
-#include "SyncMsgs/syncmsg.h"
+#include "ll.h"
+#include "rtmanager.h"
+#include "syncmsg.h"
 
 #define SOCKET_NAME "/tmp/tstSock"
 #define MAX_BUFSIZE 128

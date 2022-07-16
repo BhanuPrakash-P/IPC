@@ -1,0 +1,1 @@
+add_library(syncmsg SHARED syncmsg.c)
