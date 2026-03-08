@@ -23,6 +23,20 @@ list_t* init_ll()
     return list;
 }
 
+void deinit_ll(list_t* list)
+{
+    node_t* temp = list->head;
+    node_t* prev_temp = list->head;
+    while(temp != NULL)
+    {
+        prev_temp = temp;
+        temp = temp->next;
+        free(prev_temp);
+    }
+    //list->head = NULL;
+    free(list);
+}
+
 void append_ll(list_t* list, void * data)
 {
     node_t *cur = list->head;

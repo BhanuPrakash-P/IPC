@@ -12,8 +12,8 @@
 #ifndef _SYNC_MSG_
 #define _SYNC_MSG_
 
-#include "../LL/ll.h"
-#include "../RTManager/rtmanager.h"
+#include "ll.h"
+#include "rtmanager.h"
 
 typedef struct list list_t;
 

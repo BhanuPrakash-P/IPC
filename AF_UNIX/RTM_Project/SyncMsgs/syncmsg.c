@@ -14,14 +14,11 @@
 #include <stddef.h>
 
 #include "syncmsg.h"
-#include "../LL/ll.h"
-#include "../RTManager/rtmanager.h"
 
 void process_sync_message(list_t* routing_table, sync_msg_t* sync_msg)
 {
-    node_t* node;
+    node_t* node = NULL;
     //Check whether the entry exists in the routing table already
-    printf("Check for entry in RT\n");
     node = find_routing_entry(routing_table, sync_msg->routing_entry.destination, sync_msg->routing_entry.mask);
     switch(sync_msg->opcode)
     {

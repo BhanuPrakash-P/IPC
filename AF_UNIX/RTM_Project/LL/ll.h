@@ -22,8 +22,10 @@ typedef struct list
 }list_t;
 
 list_t* init_ll();
+void deinit_ll(list_t* list);
 void append_ll(list_t* list, void * data);
 void del_ll(list_t* list, node_t* node);
+
 //void display_ll(list_t* list); // cannot be implemented here since the data in structure is void and depends on application
 
 // init, deinit, add/append, del

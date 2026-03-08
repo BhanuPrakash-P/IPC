@@ -1,4 +1,4 @@
-Implementing Several IPC mechanisms.
+## Implementing Several IPC mechanisms.
 
 1. Client-Server communication using UNIX sockets.
     - Client Process: Reads the data from user and sends it to server until user provides input '0'.
@@ -12,3 +12,9 @@ Implementing Several IPC mechanisms.
 4. Basic Message Queue Implementaion
     - TODO: Add signal handlers for destorying/removing message queue
 
+**BUILD Instructions:**
+CMake support is available to build server and client applications.
+After cloning the Repo, run the following command to generate the Makefile
+```cmake . -B build```
+Makefile gets generated under build directoty. So, goto build directory and run ```make``` command.
+This will compile the code and generate required libraries and server, client applications.
